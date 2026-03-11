@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="caraka — Rick Leckinger. Nomad, technologist, community builder.">
+  <title>carakastan — leckinger.nz</title>
+
+  <!-- Bootstrap 5.3.8 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --forest-deep:   #0d2118;
+      --forest-mid:    #1a3d28;
+      --forest-green:  #2d6a4f;
+      --fern:          #52b788;
+      --cream:         #f5f2ec;
+      --bark:          #3d2b1f;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 300;
+      color: #2a2a2a;
+      background-color: var(--cream);
+    }
+
+    /* ── Navbar ── */
+    .navbar {
+      background: transparent;
+      transition: background 0.4s ease;
+    }
+    .navbar.scrolled {
+      background: var(--forest-deep) !important;
+    }
+    .navbar-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: #fff !important;
+      letter-spacing: 0.03em;
+    }
+    .nav-link {
+      color: rgba(255,255,255,0.8) !important;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+    .nav-link:hover {
+      color: var(--fern) !important;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+
+      /*
+        Replace the gradient below with a photo of Hunua Falls / NZ bush:
+        background-image: linear-gradient(...), url('img/hunua.jpg');
+        background-size: cover;
+        background-position: center;
+      */
+      background-image:
+        linear-gradient(
+          160deg,
+          rgba(13,33,24,0.92) 0%,
+          rgba(26,61,40,0.80) 50%,
+          rgba(45,106,79,0.70) 100%
+        ),
+        /* Subtle organic texture using SVG */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      background-color: var(--forest-deep);
+      background-size: cover, 400px 400px;
+      background-position: center, center;
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: rgba(255,255,255,0.75);
+      font-weight: 300;
+      max-width: 480px;
+    }
+
+    .hero-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--fern);
+      margin: 1.5rem 0;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.4);
+      font-size: 1.5rem;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── About ── */
+    .section-about {
+      padding: 6rem 0;
+      background: var(--cream);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--forest-green);
+    }
+
+    .section-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--forest-deep);
+      margin-bottom: 1.25rem;
+    }
+
+    .col-block {
+      border-top: 1px solid rgba(45,106,79,0.25);
+      padding-top: 1.25rem;
+    }
+
+    .about-body {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #3a3a3a;
+    }
+
+    .values-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .values-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(45,106,79,0.15);
+      font-size: 1rem;
+      color: #3a3a3a;
+    }
+    .values-list li::before {
+      content: '— ';
+      color: var(--fern);
+    }
+
+    /* ── Links ── */
+    .section-links {
+      padding: 5rem 0;
+      background: var(--forest-deep);
+    }
+
+    .section-links .section-heading {
+      color: #fff;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid rgba(82,183,136,0.2);
+      border-radius: 6px;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      background: rgba(255,255,255,0.03);
+    }
+    .link-card:hover {
+      border-color: var(--fern);
+      color: #fff;
+      background: rgba(82,183,136,0.08);
+    }
+    .link-card i {
+      font-size: 1.4rem;
+      color: var(--fern);
+      flex-shrink: 0;
+    }
+    .link-card-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fern);
+      line-height: 1;
+    }
+    .link-card-name {
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--forest-deep);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 1.5rem 0;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="#top">carakastan</a>
+      <button class="navbar-toggler border-0" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navLinks"
+              aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list text-white fs-4"></i>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navLinks">
+        <ul class="navbar-nav gap-3">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#links">Links</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero position-relative" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10">
+          <p class="section-label text-white opacity-75 mb-3">leckinger.nz</p>
+          <h1 class="hero-name">carakastan</h1>
+          <div class="hero-divider"></div>
+          <p class="hero-tagline">A place to call home on the interwebz.</p>
+        </div>
+      </div>
+    </div>
+    <a href="#about" class="scroll-hint" aria-label="Scroll down">
+      <i class="bi bi-chevron-down"></i>
+    </a>
+  </section>
+
+  <!-- About -->
+  <section class="section-about" id="about">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col">
+          <h2 class="section-heading">US/NZ dual citizen. Nomad. Builder. Curious.</h2>
+        </div>
+      </div>
+      <div class="row align-items-start gy-5">
+        <div class="col-lg-6 col-block">
+          <p class="section-label">Why I get out of bed</p>
+          <p class="about-body">
+            I spent 32 years in Aotearoa — community radio, residents' associations, grid-scale energy policy, MSF field work in Somalia. Now I travel the US in a trailer, do cybersecurity work, and think about how to make things better with fewer words and more action.
+          </p>
+          <p class="about-body mt-3">
+            My handle is caraka. I've had it since before most social platforms existed, and I'm keeping it.
+          </p>
+        </div>
+        <div class="col-lg-5 offset-lg-1 col-block">
+          <p class="section-label">What I hold to</p>
+          <ul class="values-list">
+            <li>The first obligation of any mature adult or community is to feed the children.</li>
+            <li>Justice is the foundation of any civilised society, regardless of its fashionable isms.</li>
+            <li>Understanding, love and beauty are the three pillars of happiness; grounded in peace.</li>
+            <li>Adwaita vedanta is the grand unifying theory everyone is looking for.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Links -->
+  <section class="section-links" id="links">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col">
+          <p class="section-label" style="color: var(--fern)">Find me</p>
+          <h2 class="section-heading">Links</h2>
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-sm-6 col-lg-4">
+          <a href="https://github.com/caraka" target="_blank" rel="noopener" class="link-card">
+            <i class="bi bi-github"></i>
+            <div>
+              <div class="link-card-label">Code</div>
+              <div class="link-card-name">github.com/caraka</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      &copy; 2026 Richard Leckinger &mdash; caraka
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5.3.8 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+  <script>
+    // Navbar background on scroll
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
